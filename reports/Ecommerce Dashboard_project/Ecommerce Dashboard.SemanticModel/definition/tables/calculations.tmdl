@@ -1,0 +1,49 @@
+table calculations
+	lineageTag: 90e9e6c9-6d50-4a73-8aa7-3a187da0bff0
+
+	measure total_quantity = sum(invoices[quantity])
+		formatString: #,0
+		lineageTag: 64dce77d-93bf-4915-b93f-d19851bf97e6
+
+	measure total_revenue = ROUND(SUM(invoices[revenue]), 2)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0be39b3d-1a62-4496-a478-67d7784a8de2
+
+	measure total_invoices = DISTINCTCOUNT(invoices[invoice_no])
+		formatString: #,0
+		lineageTag: dc8b11be-89a3-450a-ba44-e8983ac9e02f
+
+	measure monthly_increase =
+			
+			var previous_revenue = CALCULATE([total_revenue],PREVIOUSMONTH(calendar[date]))
+			var current_value = [total_revenue]
+			RETURN IF(current_value = blank() || previous_revenue = blank(), blank(), DIVIDE(current_value,previous_revenue,0) - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2c8c6c9f-3b81-44f9-8c59-8ffa800898ef
+
+	measure last_refresh = FIRSTDATE(invoices[_load_time])
+		formatString: General Date
+		lineageTag: b554cf34-007a-4ddc-851e-a71f459ef17d
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: d9b1c820-c28b-4b46-9aa5-b96c4f3c8d40
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calculations = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

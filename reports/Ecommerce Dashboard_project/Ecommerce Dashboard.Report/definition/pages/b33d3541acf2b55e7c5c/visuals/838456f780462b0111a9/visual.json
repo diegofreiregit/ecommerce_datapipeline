@@ -1,0 +1,248 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "838456f780462b0111a9",
+  "position": {
+    "x": 924.6748681898066,
+    "y": 126.15114235500879,
+    "z": 0,
+    "height": 443.47978910369068,
+    "width": 539.71880492091384,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "esriVisual",
+    "query": {
+      "queryState": {
+        "Color": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "calculations"
+                    }
+                  },
+                  "Property": "total_revenue"
+                }
+              },
+              "queryRef": "calculations.total_revenue",
+              "nativeQueryRef": "Total Revenue",
+              "displayName": "Total Revenue"
+            }
+          ]
+        },
+        "Location": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "invoices"
+                    }
+                  },
+                  "Property": "country"
+                }
+              },
+              "queryRef": "invoices.country",
+              "nativeQueryRef": "Country",
+              "displayName": "Country"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "calculations"
+                  }
+                },
+                "Property": "total_revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "mapControls": [
+        {
+          "properties": {
+            "zoomTools": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "featureInfo": [
+        {
+          "properties": {
+            "selectedLayerKeys": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapObject": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"portalUrl\":\"https://www.arcgis.com\",\"version\":\"2.4\",\"isAuthorNamedUser\":false,\"map\":{\"webmap\":{\"is3d\":false,\"itemData\":{\"operationalLayers\":[{\"id\":\"MyLayer\",\"visibility\":true,\"opacity\":1,\"minScale\":0,\"maxScale\":0,\"refreshInterval\":0,\"title\":\"country\",\"objectIdField\":\"objectId\",\"type\":\"DataLayer\",\"layerType\":\"ArcGISFeatureLayer\",\"popupEnabled\":true,\"disablePopup\":false,\"visible\":true,\"geometryType\":\"polygon\",\"source\":[{\"attributes\":{},\"geometry\":{\"rings\":[],\"type\":\"polygon\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}],\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"esriMaps\":{\"isTimeEnabled\":\"false\",\"clusterInfo\":null,\"lastShareInfo\":null},\"timeInfo\":null,\"showLabels\":true,\"featureCollection\":{\"layers\":[{\"popupInfo\":{\"popupElements\":[{\"type\":\"fields\",\"fieldInfos\":[{\"fieldName\":\"invoices_country\",\"isEditable\":true,\"label\":\"Country\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"calculations_total_revenue\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Total Revenue\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}]}],\"expressionInfos\":[],\"fieldInfos\":[{\"fieldName\":\"invoices_country\",\"isEditable\":true,\"label\":\"Country\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"calculations_total_revenue\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Total Revenue\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}],\"title\":\"\",\"actions\":[]},\"effect\":null,\"layerDefinition\":{\"objectIdField\":\"objectId\",\"fields\":[{\"alias\":\"objectId\",\"editable\":false,\"name\":\"objectId\",\"nullable\":false,\"type\":\"esriFieldTypeOID\"},{\"alias\":\"Country\",\"editable\":true,\"length\":-1,\"name\":\"invoices_country\",\"nullable\":true,\"type\":\"esriFieldTypeString\"},{\"alias\":\"Total Revenue\",\"editable\":true,\"name\":\"calculations_total_revenue\",\"nullable\":true,\"type\":\"esriFieldTypeDouble\"},{\"alias\":\"ROW_ID\",\"editable\":true,\"name\":\"ROW_ID\",\"nullable\":true,\"type\":\"esriFieldTypeInteger\"}],\"geometryType\":\"polygon\",\"drawingInfo\":{\"renderer\":{\"authoringInfo\":{\"classificationMethod\":\"esriClassifyNaturalBreaks\",\"type\":\"classedColor\"},\"type\":\"classBreaks\",\"visualVariables\":[],\"classBreakInfos\":[{\"classMaxValue\":22344.48,\"symbol\":{\"type\":\"esriSFS\",\"color\":[239,243,255,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,255],\"width\":0.3,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"}},{\"classMaxValue\":61452.2,\"symbol\":{\"type\":\"esriSFS\",\"color\":[189,215,231,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,255],\"width\":0.3,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"}},{\"classMaxValue\":138420.61,\"symbol\":{\"type\":\"esriSFS\",\"color\":[107,174,214,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,255],\"width\":0.3,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"}},{\"classMaxValue\":285446.34,\"symbol\":{\"type\":\"esriSFS\",\"color\":[49,130,189,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,255],\"width\":0.3,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"}},{\"classMaxValue\":7250857.272999995,\"symbol\":{\"type\":\"esriSFS\",\"color\":[8,81,156,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,255],\"width\":0.3,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"}}],\"defaultLabel\":\"Other\",\"defaultSymbol\":{\"type\":\"esriSFS\",\"color\":[170,170,170,255],\"outline\":{\"type\":\"esriSLS\",\"color\":[153,153,153,64],\"width\":0.375,\"style\":\"esriSLSSolid\"},\"style\":\"esriSFSSolid\"},\"field\":\"calculations_total_revenue\",\"minValue\":145.92000000000002},\"labelingInfo\":[{\"labelExpression\":\"[invoices_country]\",\"labelExpressionInfo\":{\"expression\":\"$feature[\\\"invoices_country\\\"]\"},\"labelPlacement\":\"esriServerPointLabelPlacementAboveRight\",\"labelPosition\":\"curved\",\"repeatLabel\":true,\"symbol\":{\"type\":\"esriTS\",\"color\":[0,0,0,255],\"font\":{\"family\":\"Arial Unicode MS\",\"size\":9},\"horizontalAlignment\":\"center\",\"kerning\":true,\"rotated\":false,\"text\":\"\",\"verticalAlignment\":\"baseline\",\"xoffset\":0,\"yoffset\":0,\"angle\":0,\"lineWidth\":192,\"lineHeight\":1}}],\"transparency\":0},\"featureReduction\":null,\"locationProvider\":{\"type\":\"cachedstdgeo\",\"adminLevel\":\"countries\",\"targetSR\":{\"latestWkid\":3857,\"wkid\":102100},\"useExactMatch\":false,\"sourceCountry\":\"world\",\"geographyLevel\":\"countries\",\"lookupFields\":[{\"lookupField\":\"Location\",\"outField\":\"invoices_country\"}]},\"minScale\":0,\"maxScale\":0,\"definitionExpression\":null,\"templates\":[{\"name\":\"New Feature\",\"description\":\"\",\"prototype\":{\"attributes\":{\"invoices_country\":null,\"calculations_total_revenue\":null,\"ROW_ID\":null}}}],\"elevationInfo\":null,\"name\":\"country\",\"type\":\"DataLayer\",\"queryParameters\":{\"tableId\":\"\"}},\"featureSet\":{\"features\":[{\"attributes\":{},\"geometry\":{\"rings\":[],\"type\":\"polygon\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}]}}]}}],\"tables\":[],\"baseMap\":{\"baseMapLayers\":[{\"id\":\"VectorTile_1970\",\"opacity\":1,\"title\":\"Light Gray Base\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json\"},{\"id\":\"VectorTile_7117\",\"opacity\":1,\"title\":\"Light Gray Reference\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json\",\"isReference\":true}],\"title\":\"Light Gray Canvas\",\"origItemId\":\"de45b9cad20141ebb82fae0da8b3e2c6\"},\"version\":\"2.26\",\"authoringApp\":\"ArcGIS for Power BI\",\"bookmarks\":[],\"initialState\":{\"viewpoint\":{\"targetGeometry\":{\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"xmin\":-19755431.25342433,\"ymin\":-11704829.023420196,\"xmax\":21258843.635711707,\"ymax\":20229949.89789183}}}}},\"webmapExtensions\":{\"format\":2}},\"embedCheckPassed\":false}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapTools": [
+        {
+          "properties": {
+            "basemaps": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "share": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "theme": [
+        {
+          "properties": {
+            "enable": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heatmap - Total Revenue per Country'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

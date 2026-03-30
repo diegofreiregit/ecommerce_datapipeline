@@ -1,0 +1,61 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 396.907027816534,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 764.9902857496985,
+            "y": 268.70688634030046
+          },
+          "nodeIndex": "invoices",
+          "nodeLineageTag": "bad33dda-db76-462a-915a-db05f6b434d2",
+          "size": {
+            "height": 323.6497030613765,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 96
+          },
+          "nodeIndex": "calculations",
+          "nodeLineageTag": "90e9e6c9-6d50-4a73-8aa7-3a187da0bff0",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 430.25915932485827,
+            "y": 269.064109877247
+          },
+          "nodeIndex": "calendar",
+          "nodeLineageTag": "ab9bd7ad-cab3-456f-8e79-6f43743fd8a8",
+          "size": {
+            "height": 322.19384901318006,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 112.11693641406029,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

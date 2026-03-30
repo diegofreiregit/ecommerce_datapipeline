@@ -1,0 +1,128 @@
+table invoices
+	lineageTag: bad33dda-db76-462a-915a-db05f6b434d2
+
+	column invoice_no
+		dataType: int64
+		formatString: 0
+		lineageTag: d78ff90b-0422-4bb2-8470-40f8497436ae
+		summarizeBy: sum
+		sourceColumn: invoice_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column stock_code
+		dataType: string
+		lineageTag: 7127d787-1c21-406d-9d15-e6e9ba9a46ef
+		summarizeBy: none
+		sourceColumn: stock_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: eeaeccf0-2eb0-43c5-903c-ae811c897608
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: #,0
+		lineageTag: 40b5dfea-d9ca-410e-b340-55552f5533b1
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 701d57dc-79d9-484b-9e1b-b0f9524b412d
+		summarizeBy: none
+		sourceColumn: invoice_date
+
+		variation Variation
+			isDefault
+			relationship: ea82975b-8931-4704-a841-74161fbc1e7c
+			defaultHierarchy: LocalDateTable_a0d62387-a2c6-45f4-982e-d7b8b51d1aca.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: fc16697f-6724-49db-8686-ba355b468df7
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: ee0b46b5-bd86-4e61-b0cb-c481f731115a
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 7b310199-48f7-4d62-a61d-c2956c04fc80
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column _load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec083d11-e967-44a6-9457-ce95c42cd9bd
+		summarizeBy: none
+		sourceColumn: _load_time
+
+		variation Variation
+			isDefault
+			relationship: 13d4ad4b-2b40-4461-812c-88ac981cbe0b
+			defaultHierarchy: LocalDateTable_dccda9ed-e98e-4999-9153-0456659b8e3c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue = invoices[quantity] * invoices[unit_price]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d4e802c2-37eb-4ec9-a9fc-e57947aaefc1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_date_only
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c23c3c73-fb09-4071-a4b9-4375a0393ce0
+		summarizeBy: none
+		sourceColumn: invoice_date_only
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition invoices = m
+		mode: import
+		queryGroup: silver_layer
+		source =
+				let
+				    Fonte = DatabricksMultiCloud.Catalogs("dbc-37159662-9953.cloud.databricks.com", "/sql/1.0/warehouses/0f330ba0ac8a1e0d", [Catalog = "", Database = ""]),
+				    ecommerce_Database = Fonte{[Name="ecommerce",Kind="Database"]}[Data],
+				    silver_Schema = ecommerce_Database{[Name="silver",Kind="Schema"]}[Data],
+				    invoicesspark_Table = silver_Schema{[Name="invoicesspark",Kind="Table"]}[Data],
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(invoicesspark_Table, {{"invoice_date", type datetime}}, "en-US"),
+				    #"Data Inserida" = Table.AddColumn(#"Tipo Alterado com Localidade", "Data", each DateTime.Date([invoice_date]), type date),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Data Inserida",{{"Data", "invoice_date_only"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

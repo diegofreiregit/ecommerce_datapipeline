@@ -1,0 +1,19 @@
+relationship 13d4ad4b-2b40-4461-812c-88ac981cbe0b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: invoices._load_time
+	toColumn: LocalDateTable_dccda9ed-e98e-4999-9153-0456659b8e3c.Date
+
+relationship 6a4aef20-cc6a-4865-9ac3-0d5f6f9e9ea4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: calendar.Date
+	toColumn: LocalDateTable_7acdaa53-532c-47ce-b895-1fed377a4501.Date
+
+relationship ea82975b-8931-4704-a841-74161fbc1e7c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: invoices.invoice_date
+	toColumn: LocalDateTable_a0d62387-a2c6-45f4-982e-d7b8b51d1aca.Date
+
+relationship e200b41b-66b6-ec13-ed0a-aac26d77d316
+	fromColumn: invoices.invoice_date_only
+	toColumn: calendar.Date
+

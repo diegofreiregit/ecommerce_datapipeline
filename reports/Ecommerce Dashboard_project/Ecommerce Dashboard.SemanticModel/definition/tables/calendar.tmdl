@@ -1,0 +1,107 @@
+table calendar
+	lineageTag: ab9bd7ad-cab3-456f-8e79-6f43743fd8a8
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7b88cf37-dbb6-4b02-a6ea-ee4b9c9b441d
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 6a4aef20-cc6a-4865-9ac3-0d5f6f9e9ea4
+			defaultHierarchy: LocalDateTable_7acdaa53-532c-47ce-b895-1fed377a4501.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f0335e1c-d0bb-4f4b-b4af-6af2b8081cb5
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ec11025-c0e9-4327-b290-5b586240f36e
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: a03a1629-a181-42c4-944f-0cb06332afd4
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 101ae688-e76c-4bd2-b6dc-f9bda1e473be
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name (EN)'
+		dataType: string
+		lineageTag: 5e6a1fb2-ea72-4c57-bb51-ffc029a9b8e3
+		summarizeBy: none
+		sourceColumn: Month Name (EN)
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: ca48ba22-20ab-4bc3-ad7a-76bb15c1298d
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calendar = m
+		mode: import
+		queryGroup: dimensions
+		source =
+				let
+				    StartDate = Date.From(List.Min(invoices[invoice_date])),
+				    EndDate = Date.From(List.Max(invoices[invoice_date])),
+				    DateList = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    #"Converted to Table" = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table", {{"Date", type date}}),
+				    #"Added Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Added Month" = Table.AddColumn(#"Added Year", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Added Month Name" = Table.AddColumn(#"Added Month", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Added Quarter" = Table.AddColumn(#"Added Month Name", "Quarter", each Date.QuarterOfYear([Date]), Int64.Type),
+				    #"Added Custom" = Table.AddColumn(#"Added Quarter", "Month Name (EN)", each if [Month] = 1 then "January" else
+				if [Month] = 2 then "February" else
+				if [Month] = 3 then "March" else
+				if [Month] = 4 then "April" else
+				if [Month] = 5 then "May" else
+				if [Month] = 6 then "June" else
+				if [Month] = 7 then "July" else
+				if [Month] = 8 then "August" else
+				if [Month] = 9 then "September" else
+				if [Month] = 10 then "October" else
+				if [Month] = 11 then "November" else
+				if [Month] = 12 then "December" else ""),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "YearMonth", each Number.From(Number.ToText(Date.Year([Date])) & Text.PadStart(Number.ToText(Date.Month([Date])), 2, "0")))
+				in
+				    #"Added Custom1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
